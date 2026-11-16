@@ -1,0 +1,1 @@
+export { MarksScreen } from './MarksScreen';
