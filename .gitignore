@@ -41,3 +41,19 @@ example
 # generated native folders
 /ios
 /android
+
+# ── Private analysis, plans, reports and write-ups: NEVER published ──
+# (owner rule 2026-11-16: only code and the binding engineering rules go to GitHub)
+/docs/private/
+/docs/analysis/
+/docs/reports/
+/analysis/
+/reports-private/
+/scratch/
+*-analysis.md
+*-gap-analysis.md
+*-comparison.md
+*-plan.md
+*.plan.md
+*-report.md
+jira-import.csv
