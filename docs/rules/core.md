@@ -15,7 +15,7 @@ Expo app for the **teachers** (`TEACHER`) of ONE institute (معهد جيل ال
 | 1 | Entry | `src/app/**` (expo-router) | one `<XScreen />` per route, layouts render a shell | logic, styles, queries |
 | 2 | Features | `src/features/<f>/` | screen, controller, store, queries, `ui/` | raw RN primitives, style values, colors |
 | 3 | Components | `src/components/<name>/` | the design system: compound components | knowledge of any feature or API |
-| 4 | Core | `src/core/{theme,brand,api,auth,storage,format,strings,layout}` | tokens, infrastructure | UI |
+| 4 | Core | `src/core/{theme,brand,api,auth,storage,format,strings,layout,push}` | tokens, infrastructure | UI |
 
 - Only layer 3 may import `View Text Pressable ScrollView FlatList Image TextInput StyleSheet`, reanimated, svg, blur, linear-gradient, icons, gesture-handler and may write style values (always read from tokens).
 - Only `core/theme` + `core/brand` may contain color literals (`#hex`, `rgb(`, `rgba(`).
@@ -66,7 +66,7 @@ A component with more than one visual part is compound: `Card` + `Card.Header` +
 
 - One axios instance (`core/api/client.ts`): auth header, single-flight refresh, `Accept-Language: ar`, and the operational context headers `X-Branch-Id` / `X-Academic-Year-Id` (from `/teacher/me`; the server validates them). Features never create their own client or read tokens.
 - Server state = TanStack Query only. Query keys include the context (branch, year) and ids. `keepPreviousData` when switching days / sections.
-- Tokens live in `expo-secure-store` only (`core/storage`); web localStorage is a dev fallback.
+- Tokens live in `expo-secure-store` (`core/storage`); the installed web app (iPhone path) uses localStorage of its own origin.
 - Statistics, rankings and "needs attention" lists come from the server; never compute them from the page of data you hold.
 - Marks and attendance forms: edits live in the page store until saved; protect unsaved changes (confirm on leave); keep a local draft for flaky networks. The server stays the source of truth for statuses.
 - Errors: `getApiErrorMessage` from `core/api/errors` (English/Arabic text mapping); show the server's Arabic message as-is.

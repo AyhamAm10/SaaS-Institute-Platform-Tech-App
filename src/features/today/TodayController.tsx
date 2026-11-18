@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { useUnreadCount } from '@/features/notifications';
 import { useSession } from '@/core/auth/store';
 import { useOverviewQuery } from './api/today.api';
 import { TodayView } from './ui/TodayView';
@@ -6,6 +7,7 @@ import { TodayView } from './ui/TodayView';
 /** Today: reads the overview (stateless screen: query + boundary, no page store) and hands props to the view. */
 export function TodayController() {
   const router = useRouter();
+  const unread = useUnreadCount();
   const query = useOverviewQuery();
   const name = useSession((s) => s.me?.teacher.fullName ?? '');
   return (
@@ -14,6 +16,7 @@ export function TodayController() {
       name={name}
       refreshing={query.isRefetching}
       onRefresh={() => void query.refetch()}
+      unread={unread}
       onNotifications={() => router.push('/notifications')}
       onOpenExam={(examId, sectionId) => router.push({ pathname: '/exams/[id]', params: { id: String(examId), sectionId: String(sectionId) } })}
     />

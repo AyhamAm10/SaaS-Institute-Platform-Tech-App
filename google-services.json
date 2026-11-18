@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "36368609957",
+    "project_id": "jil-salam-institute",
+    "storage_bucket": "jil-salam-institute.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36368609957:android:3d7ef3c555d41150a6934c",
+        "android_client_info": {
+          "package_name": "me.ayhamashram.jil.parents"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkaz86QbL0COBDoGE1greFQKDTyuJiG-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36368609957:android:5aeec60e5f9494e5a6934c",
+        "android_client_info": {
+          "package_name": "me.ayhamashram.jil.teacher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkaz86QbL0COBDoGE1greFQKDTyuJiG-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

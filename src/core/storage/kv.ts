@@ -3,8 +3,8 @@ import * as SecureStore from 'expo-secure-store';
 
 /**
  * Key-value storage. Native: expo-secure-store (Keychain/Keystore).
- * Web has no secure store, so a dev-only localStorage fallback is used
- * (web is only a design/debug target, never shipped).
+ * Web has no secure store: the installed web app (iPhone users, home screen)
+ * keeps the session in localStorage of its own origin.
  */
 export async function kvGet(key: string): Promise<string | null> {
   try {

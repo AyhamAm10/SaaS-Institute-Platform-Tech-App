@@ -2,3 +2,4 @@
 export * from './contract/base';
 export * from './contract/study';
 export * from './contract/exams';
+export * from './contract/notifications';

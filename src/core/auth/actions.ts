@@ -2,11 +2,14 @@ import { changePassword, fetchAccountState, fetchMe, login, logoutRequest } from
 import { setAuthFailureHandler } from '@/core/api/client';
 import type { ChangePasswordInput, LoginInput } from '@/core/api/types';
 import { queryClient } from '@/core/api/query-client';
+import { releasePushDevice, syncPushDevice } from '@/core/push/registration';
 import { clearTokens, loadTokens, saveTokens } from '@/core/storage/tokens';
 import { useSession } from './store';
 
 async function loadProfile(): Promise<void> {
   useSession.getState().setSignedIn(await fetchMe());
+  // Push is best effort: registers this device in the background
+  void syncPushDevice();
 }
 
 /** App start: restore a stored session (splash is shown while status === 'restoring'). */
@@ -63,6 +66,7 @@ export async function changePasswordAndContinue(input: ChangePasswordInput): Pro
 }
 
 export async function signOut(): Promise<void> {
+  await releasePushDevice();
   await logoutRequest();
   await clearTokens();
   queryClient.clear();

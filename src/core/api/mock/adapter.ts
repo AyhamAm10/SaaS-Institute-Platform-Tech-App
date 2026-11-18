@@ -1,6 +1,7 @@
 import { AxiosError, type AxiosAdapter, type AxiosResponse, type InternalAxiosRequestConfig } from 'axios';
 import { createExam, deleteExam, examTypes, listExams, saveSheet, sheetOf, updateExam } from './exams';
 import { teacherMe } from './me';
+import { notificationsRoute } from './notifications';
 import { overview, sections, timetable } from './study';
 
 type Config = InternalAxiosRequestConfig;
@@ -63,6 +64,8 @@ export const mockAdapter: AxiosAdapter = async (config) => {
   if (forced) return fail(config, 403, 'password_change_required');
 
   if (url.endsWith('/teacher/me')) return ok(config, teacherMe);
+  const inbox = notificationsRoute(url, method, body);
+  if (inbox !== null) return ok(config, inbox);
   if (url.endsWith('/teacher/overview')) return ok(config, overview());
   if (url.endsWith('/teacher/timetable')) return ok(config, timetable);
   if (url.endsWith('/teacher/sections')) return ok(config, sections);

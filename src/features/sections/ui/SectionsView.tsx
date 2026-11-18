@@ -7,17 +7,24 @@ interface Props {
   query: BoundaryQuery<TeacherSection[]>;
   refreshing: boolean;
   onRefresh: () => void;
+  /** Unread notifications (bell dot). */
+  unread: number;
   onNotifications: () => void;
 }
 
 /** Sections tab: one card per section I teach. */
-export function SectionsView({ query, refreshing, onRefresh, onNotifications }: Props) {
+export function SectionsView({ query, refreshing, onRefresh, unread, onNotifications }: Props) {
   return (
     <Screen withTabBar onRefresh={onRefresh} refreshing={refreshing}>
       <Screen.Header>
         <Header title={ar.sections.title}>
           <Header.Actions>
-            <IconButton icon="notifications" label={ar.notifications.title} onPress={onNotifications} />
+            <IconButton
+              icon="notifications"
+              label={unread > 0 ? `${ar.notifications.title}، ${unread} ${ar.notifications.unread}` : ar.notifications.title}
+              dot={unread > 0}
+              onPress={onNotifications}
+            />
           </Header.Actions>
         </Header>
       </Screen.Header>

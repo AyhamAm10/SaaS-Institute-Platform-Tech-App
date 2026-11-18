@@ -1,37 +1,63 @@
-import { EmptyState, Header, Icon, ListItem, Reveal, Screen, Stack, StatusPill, Surface, Text } from '@/components';
+import type { ReactNode } from 'react';
+import {
+  Button, EmptyState, ErrorState, Header, Reveal, Screen, SectionHeader, Skeleton, Stack, Surface,
+} from '@/components';
+import { relativeDay } from '@/core/format/date';
 import { ar } from '@/core/strings/ar';
-import type { DemoNotification } from '../static-data/notifications.data';
+import type { InboxDay, InboxItem } from '../utils/inbox.utils';
+import { InboxRow } from './InboxRow';
 
-interface Props { items: DemoNotification[]; onBack: () => void }
+export interface InboxState {
+  days: InboxDay[];
+  pending: boolean;
+  error: unknown;
+  hasMore: boolean;
+  loadingMore: boolean;
+  unread: number;
+}
 
-/** Pushed screen: a demo list with a clear "demo data" notice. */
-export function NotificationsView({ items, onBack }: Props) {
+interface Props {
+  inbox: InboxState;
+  /** Push card and preferences, rendered above the list. */
+  top: ReactNode;
+  refreshing: boolean;
+  onRefresh: () => void;
+  onRetry: () => void;
+  onBack: () => void;
+  onOpen: (item: InboxItem) => void;
+  onMarkAll: () => void;
+  onMore: () => void;
+}
+
+/** Pushed screen: device push state, preferences, then the inbox grouped by day. */
+export function NotificationsView({ inbox, top, refreshing, onRefresh, onRetry, onBack, onOpen, onMarkAll, onMore }: Props) {
   return (
-    <Screen>
+    <Screen onRefresh={onRefresh} refreshing={refreshing}>
       <Screen.Header>
         <Header title={ar.notifications.title}>
           <Header.Back label={ar.common.back} onPress={onBack} />
         </Header>
       </Screen.Header>
       <Screen.Body>
-        <StatusPill label={ar.notifications.placeholder} tone="info" icon="information-circle" />
-        {items.length === 0 ? (
+        <Reveal index={0}><Stack gap="md">{top}</Stack></Reveal>
+        {inbox.unread > 0 ? <Button variant="ghost" label={ar.notifications.markAllRead} onPress={onMarkAll} /> : null}
+        {inbox.pending ? (
+          <Stack gap="md">{[0, 1].map((i) => <Skeleton key={i} height={96} />)}</Stack>
+        ) : inbox.error && inbox.days.length === 0 ? (
+          <ErrorState error={inbox.error} onRetry={onRetry} />
+        ) : inbox.days.length === 0 ? (
           <EmptyState icon="notifications" title={ar.notifications.empty} hint={ar.notifications.emptyHint} />
         ) : (
-          <Stack gap="md">
-            {items.map((n, i) => (
-              <Reveal key={n.id} index={i}>
-                <Surface padding="md">
-                  <ListItem>
-                    <ListItem.Leading><Icon name={n.icon} tone="accentSolid" /></ListItem.Leading>
-                    <ListItem.Content title={n.title} subtitle={n.body} />
-                    <ListItem.Meta><Text variant="caption" tone="muted">{n.when}</Text></ListItem.Meta>
-                  </ListItem>
-                </Surface>
-              </Reveal>
-            ))}
-          </Stack>
+          inbox.days.map((d, i) => (
+            <Reveal key={d.date} index={i + 1}>
+              <SectionHeader title={relativeDay(d.date)} />
+              <Surface padding="md" gap="xs">
+                {d.items.map((item) => <InboxRow key={item.id} item={item} onPress={() => onOpen(item)} />)}
+              </Surface>
+            </Reveal>
+          ))
         )}
+        {inbox.hasMore ? <Button variant="ghost" label={ar.notifications.more} onPress={onMore} loading={inbox.loadingMore} /> : null}
       </Screen.Body>
     </Screen>
   );

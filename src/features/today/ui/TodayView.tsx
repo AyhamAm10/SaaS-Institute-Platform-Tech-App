@@ -10,18 +10,25 @@ interface Props {
   name: string;
   refreshing: boolean;
   onRefresh: () => void;
+  /** Unread notifications (bell dot). */
+  unread: number;
   onNotifications: () => void;
   onOpenExam: (examId: number, sectionId: number) => void;
 }
 
 /** The first tab: greeting header, then the day's blocks (or skeleton / error). */
-export function TodayView({ query, name, refreshing, onRefresh, onNotifications, onOpenExam }: Props) {
+export function TodayView({ query, name, refreshing, onRefresh, unread, onNotifications, onOpenExam }: Props) {
   return (
     <Screen ambient="warm" withTabBar onRefresh={onRefresh} refreshing={refreshing}>
       <Screen.Header>
         <Header title={`${ar.today.greeting} ${name}`} eyebrow={query.data ? formatLongDate(query.data.date) : undefined}>
           <Header.Actions>
-            <IconButton icon="notifications" label={ar.notifications.title} onPress={onNotifications} />
+            <IconButton
+              icon="notifications"
+              label={unread > 0 ? `${ar.notifications.title}، ${unread} ${ar.notifications.unread}` : ar.notifications.title}
+              dot={unread > 0}
+              onPress={onNotifications}
+            />
           </Header.Actions>
         </Header>
       </Screen.Header>
