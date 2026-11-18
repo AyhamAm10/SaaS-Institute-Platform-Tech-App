@@ -30,7 +30,7 @@ export function TimetableView({ onNotifications }: { onNotifications: () => void
         >
           {(timetable) => (
             <Stack gap="md">
-              <SegmentTabs items={dayTabs(timetable)} value={String(selectedDay)} onChange={(key) => setDay(Number(key))} />
+              <SegmentTabs fill items={dayTabs(timetable)} value={String(selectedDay)} onChange={(key) => setDay(Number(key))} />
               <DayList timetable={timetable} dayOfWeek={selectedDay} />
             </Stack>
           )}

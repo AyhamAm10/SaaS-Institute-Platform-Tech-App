@@ -14,10 +14,10 @@ const n = (
 
 /** Mock inbox of the demo teacher, newest first; read state and switches live in memory. */
 const inbox: ServerNotification[] = [
-  n(5, 'MARKS_REMINDER', 'علامات بانتظار الإدخال', 'المذاكرة الأولى - التاسع - شعبة أ (2026/11/15)', { examId: 1, sectionId: 1 }, at(0, '09:00')),
+  n(5, 'MARKS_REMINDER', 'علامات بانتظار الإدخال', 'المذاكرة الأولى - التاسع - شعبة أ (2026/11/15)', { examId: 18, sectionId: 4 }, at(0, '09:00')),
   n(4, 'TEACHER_ASSIGNED', 'إسناد جديد', 'أُسندت إليك مادة الفيزياء في بكالوريا علمي - شعبة 1', { path: '/sections', sectionId: 2 }, at(0, '08:15')),
   n(3, 'TIMETABLE_CHANGED', 'تعديل في برنامجك', 'تغيّرت حصص في برنامجك الأسبوعي، اطّلع عليه', { path: '/timetable' }, at(1, '17:40')),
-  n(2, 'TEACHER_EXAM_CREATED', 'مذاكرة جديدة في مادتك', 'المذاكرة الثانية - التاسع - شعبة أ يوم 2026/11/22', { examId: 2, sectionId: 1 }, at(2, '12:00'), true),
+  n(2, 'TEACHER_EXAM_CREATED', 'مذاكرة جديدة في مادتك', 'المذاكرة الثانية - التاسع - شعبة أ يوم 2026/11/22', { examId: 21, sectionId: 3 }, at(2, '12:00'), true),
   n(1, 'CLOSURE', 'عطلة: اجتماع الأهالي', 'يوم 2026/11/27', { path: '/notifications' }, at(5, '14:00'), true),
 ];
 let disabled: NotificationCategory[] = [];

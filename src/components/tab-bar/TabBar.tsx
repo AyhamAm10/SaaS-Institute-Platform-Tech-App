@@ -17,7 +17,7 @@ export function TabBar({ items, activeKey, onSelect }: TabBarProps) {
           style={{
             height: TAB_BAR_HEIGHT, borderRadius: radius.pill, backgroundColor: theme.dockBg, borderWidth: 1,
             borderColor: theme.dockBorder, boxShadow: theme.elev3, flexDirection: 'row', alignItems: 'center',
-            justifyContent: 'space-around', paddingHorizontal: space.sm,
+            paddingHorizontal: space.sm,
           }}
         >
           {items.map((item) => (

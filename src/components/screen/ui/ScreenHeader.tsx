@@ -6,7 +6,7 @@ import { MAX_WIDTH, space } from '@/core/theme/metrics';
 export function ScreenHeader({ children }: { children: ReactNode }) {
   return (
     <View style={{ alignItems: 'center' }}>
-      <View style={{ width: '100%', maxWidth: MAX_WIDTH, paddingHorizontal: space.lg, paddingBottom: space.sm }}>{children}</View>
+      <View style={{ width: '100%', maxWidth: MAX_WIDTH, paddingHorizontal: space.lg, paddingTop: space.md, paddingBottom: space.sm }}>{children}</View>
     </View>
   );
 }

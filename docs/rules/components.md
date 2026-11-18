@@ -67,15 +67,15 @@ Names are the planned public names; the right column maps them to the dashboard 
 | `Screen` | `.Header` `.Body` `.Footer` | canvas + ambient blobs + safe areas + keyboard avoidance + pull-to-refresh | page layout |
 | **`Module`** | `.Header` `.Stats` `.Filters` `.Content` `.Footer` | the standard page skeleton: header, KPI strip, filters, content, footer; slots for loading / empty / error | **`AppModule`** |
 | `Header` | `.Title` `.Back` `.Actions` | top bar | `AppPageHeader` |
-| `TabBar` | `.Item` `.Action` | floating ink dock, active tab = expanding pill | `Sidebar` |
-| `SegmentTabs` | `.List` `.Panel` | in-page tabs (day / week, section filter) | `AppTabs` |
+| `TabBar` | `.Item` `.Action` | floating ink dock; fixed equal slots, active tab = icon floating up in an ink bubble (label fades in under it, spring damping 17, Reduce Motion = static) | `Sidebar` |
+| `SegmentTabs` | `.List` `.Panel` | in-page tabs (day / week, section filter); `fill` = equal tabs that always fit (selected never off-screen) | `AppTabs` |
 | `QueryBoundary` | none | skeleton / error+retry / empty / data switch from a query | `DataModule` states |
 
 ### 3.3 Data display
 | Component | Compound parts | Purpose | Dashboard analogue |
 |---|---|---|---|
 | **`DataList`** | `.Header` `.Search` `.Filters` `.Items` `.Empty` `.Footer` | every list: virtualized, search, filter chips, pull to refresh, infinite or paged, selection mode | **`DataModuleController`** |
-| `ListItem` | `.Leading` `.Content` `.Meta` `.Trailing` | a row (student, exam, lesson) | table row |
+| `ListItem` | `.Leading` `.Content` `.Meta` `.Trailing` | a row (student, exam, lesson); `.Content subtitleLines` lets messages wrap | table row |
 | `StatCard` | `.Icon` `.Title` `.Value` `.Progress` `.Action` | KPI tile | `StatCard` |
 | `InfoTile` `DetailList` | none | label + value, label/value grid | `InfoTile`, `DetailList` |
 | `StatusPill` | none | tinted status by `tone` (`present`, `late`, `passed`...) | `StatusBadge` |

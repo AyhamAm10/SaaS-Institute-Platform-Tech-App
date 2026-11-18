@@ -20,7 +20,7 @@ export function InboxRow({ item, onPress }: Props) {
   return (
     <ListItem onPress={onPress} label={`${item.read ? '' : `${ar.notifications.unread}، `}${item.title}، ${item.body}، ${item.time}`}>
       <ListItem.Leading><Icon name={meta.icon} tone={meta.tone} filled={!item.read} /></ListItem.Leading>
-      <ListItem.Content title={item.title} subtitle={item.body} />
+      <ListItem.Content title={item.title} subtitle={item.body} subtitleLines={3} />
       <ListItem.Meta>
         {item.read ? <Text variant="caption" tone="muted">{item.time}</Text> : <StatusPill label={item.time} tone="accent" />}
       </ListItem.Meta>

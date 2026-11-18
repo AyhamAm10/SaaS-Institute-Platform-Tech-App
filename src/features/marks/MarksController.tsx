@@ -6,6 +6,7 @@ import { useSaveMarks } from './api/marks.api';
 import { MarksContext, createMarksStore } from './store/marks.store';
 import { MarksQuerySync } from './MarksQuerySync';
 import { changedRows, editsFrom, hasInvalid, toPayload } from './utils/marks.utils';
+import { MarksMissing } from './ui/MarksMissing';
 import { MarksView } from './ui/MarksView';
 
 /** Marks sheet of one exam: edits live in the store until saved; leaving with unsaved edits asks first. */
@@ -49,6 +50,9 @@ export function MarksController() {
     if (sheet && changedRows(sheet, edits).length > 0) setLeaveOpen(true);
     else router.back();
   }, [store, router]);
+
+  // Sections loaded and the exam's section is not one of them: nothing to load
+  if (sections.isSuccess && scope === null) return <MarksMissing onBack={() => router.back()} />;
 
   return (
     <MarksContext.Provider value={store}>

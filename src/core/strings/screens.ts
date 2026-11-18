@@ -29,7 +29,6 @@ export const timetable = {
   noTimetable: 'لم يُبنَ جدولك بعد',
   noTimetableHint: 'سيظهر هنا عندما تُسند إليك حصص في الجدول',
   breakLabel: 'استراحة',
-  room: 'القاعة',
   lessonsCount: (n: number) => (n === 1 ? 'حصة واحدة' : `${n} حصص`),
 } as const;
 
@@ -104,6 +103,8 @@ export const exams = {
 
 export const marks = {
   title: 'كشف العلامات',
+  missing: 'هذه المذاكرة غير متاحة',
+  missingHint: 'لم تعد شعبتها ضمن شعبك، أو أن الرابط قديم.',
   average: 'المتوسط',
   passed: 'ناجحون',
   failed: 'راسبون',

@@ -8,7 +8,11 @@
     "scheme": "techapp",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "infoPlist": {
+        "ExpoLocalization_supportsRTL": true,
+        "ExpoLocalization_forcesRTL": true
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -19,6 +23,7 @@
       "package": "me.ayhamashram.jil.teacher",
       "googleServicesFile": "./google-services.json",
       "permissions": [
+        "POST_NOTIFICATIONS",
         "POST_NOTIFICATIONS"
       ]
     },
@@ -49,6 +54,7 @@
       [
         "expo-notifications",
         {
+          "icon": "./assets/brand/notification-icon.png",
           "color": "#F16726",
           "defaultChannel": "default"
         }
@@ -57,6 +63,21 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/d065492c-ad36-433e-a4af-ec36c3a30ace"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d065492c-ad36-433e-a4af-ec36c3a30ace"
+      }
+    },
+    "owner": "ayhamam10"
   }
 }

@@ -17,7 +17,7 @@ export function ExamCard({ exam, onOpen, onEdit, onDelete }: Props) {
       <Row justify="between" gap="sm">
         <Stack fill gap="xs">
           <Text variant="caption" tone="muted">{examMarksLabel(exam)}</Text>
-          {exam.examType ? <Text variant="caption" tone="muted">{exam.examType.name}</Text> : null}
+          {exam.examType ? <Row><StatusPill label={exam.examType.name} tone="neutral" /></Row> : null}
         </Stack>
         <Row gap="xs">
           <IconButton icon="create" label={ar.exams.edit} onPress={onEdit} />
