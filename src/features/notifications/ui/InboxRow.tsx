@@ -9,6 +9,7 @@ const META: Partial<Record<ServerNotificationType, { icon: IconName; tone: Color
   TIMETABLE_CHANGED: { icon: 'swap-horizontal', tone: 'info' },
   TEACHER_EXAM_CREATED: { icon: 'document-text', tone: 'accentSolid' },
   MARKS_REMINDER: { icon: 'create', tone: 'warning' },
+  LESSON_REMINDER: { icon: 'alarm', tone: 'accentSolid' },
   CLOSURE: { icon: 'cafe', tone: 'success' },
 };
 

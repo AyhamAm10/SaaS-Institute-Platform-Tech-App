@@ -14,6 +14,7 @@ const n = (
 
 /** Mock inbox of the demo teacher, newest first; read state and switches live in memory. */
 const inbox: ServerNotification[] = [
+  n(6, 'LESSON_REMINDER', 'حصتك القادمة بعد 14 دقيقة', 'الفيزياء - التاسع - أ - قاعة 1، الساعة 11:30', { path: '/timetable', sectionId: 3 }, at(0, '11:16')),
   n(5, 'MARKS_REMINDER', 'علامات بانتظار الإدخال', 'المذاكرة الأولى - التاسع - شعبة أ (2026/11/15)', { examId: 18, sectionId: 4 }, at(0, '09:00')),
   n(4, 'TEACHER_ASSIGNED', 'إسناد جديد', 'أُسندت إليك مادة الفيزياء في بكالوريا علمي - شعبة 1', { path: '/sections', sectionId: 2 }, at(0, '08:15')),
   n(3, 'TIMETABLE_CHANGED', 'تعديل في برنامجك', 'تغيّرت حصص في برنامجك الأسبوعي، اطّلع عليه', { path: '/timetable' }, at(1, '17:40')),

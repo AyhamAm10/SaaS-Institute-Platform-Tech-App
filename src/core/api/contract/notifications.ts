@@ -4,7 +4,7 @@ export type ServerNotificationType =
   | 'PAYMENT_RECEIVED' | 'INSTALLMENT_DUE' | 'INSTALLMENT_OVERDUE'
   | 'EXAM_SCHEDULED' | 'EXAM_RESULT' | 'TIMETABLE_CHANGED'
   | 'STUDENT_NOTE' | 'CLOSURE'
-  | 'TEACHER_ASSIGNED' | 'TEACHER_EXAM_CREATED' | 'MARKS_REMINDER';
+  | 'TEACHER_ASSIGNED' | 'TEACHER_EXAM_CREATED' | 'MARKS_REMINDER' | 'LESSON_REMINDER';
 
 /** One row of the signed-in user's inbox. */
 export interface ServerNotification {

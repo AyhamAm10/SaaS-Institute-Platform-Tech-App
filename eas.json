@@ -8,7 +8,8 @@
       "env": {
         "EXPO_PUBLIC_API_URL": "https://jilapi.ayhamashram.me/api",
         "EXPO_PUBLIC_USE_MOCK": "0"
-      }
+      },
+      "channel": "base"
     },
     "preview": {
       "extends": "base",
