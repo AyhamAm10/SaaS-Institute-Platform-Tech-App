@@ -10,6 +10,7 @@ const META: Partial<Record<ServerNotificationType, { icon: IconName; tone: Color
   TEACHER_EXAM_CREATED: { icon: 'document-text', tone: 'accentSolid' },
   MARKS_REMINDER: { icon: 'create', tone: 'warning' },
   LESSON_REMINDER: { icon: 'alarm', tone: 'accentSolid' },
+  EXAM_REMINDER: { icon: 'document-text', tone: 'warning' },
   CLOSURE: { icon: 'cafe', tone: 'success' },
 };
 
